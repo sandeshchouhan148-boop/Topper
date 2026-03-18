@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>CGPA Calculator</title>
+    <style>
+        body {
+            font-family: Arial;
+            text-align: center;
+            margin-top: 50px;
+        }
+        input {
+            margin: 5px;
+            padding: 8px;
+        }
+        button {
+            padding: 10px;
+            margin: 5px;
+            background-color: blue;
+            color: white;
+            border: none;
+        }
+    </style>
+</head>
+
+<body>
+
+<h2>CGPA Calculator</h2>
+
+<input type="number" id="sub1" placeholder="Subject 1"><br>
+<input type="number" id="sub2" placeholder="Subject 2"><br>
+<input type="number" id="sub3" placeholder="Subject 3"><br>
+<input type="number" id="sub4" placeholder="Subject 4"><br>
+<input type="number" id="sub5" placeholder="Subject 5"><br>
+
+<button onclick="calculate()">Calculate</button>
+<button onclick="saveData()">Save CGPA</button>
+<button onclick="showData()">Show Saved</button>
+
+<h3 id="result"></h3>
+<h3 id="saved"></h3>
+
+<script>
+let currentCGPA = 0;
+
+function calculate() {
+    let s1 = Number(document.getElementById("sub1").value);
+    let s2 = Number(document.getElementById("sub2").value);
+    let s3 = Number(document.getElementById("sub3").value);
+    let s4 = Number(document.getElementById("sub4").value);
+    let s5 = Number(document.getElementById("sub5").value);
+
+    let total = s1 + s2 + s3 + s4 + s5;
+    let percentage = (total / 500) * 100;
+
+    currentCGPA = percentage / 10; // simple CGPA formula
+
+    document.getElementById("result").innerHTML =
+        "Percentage: " + percentage + "%<br>CGPA: " + currentCGPA;
+}
+
+function saveData() {
+    localStorage.setItem("cgpa", currentCGPA);
+    alert("CGPA Saved!");
+}
+
+function showData() {
+    let saved = localStorage.getItem("cgpa");
+    document.getElementById("saved").innerHTML =
+        "Saved CGPA: " + saved;
+}
+</script>
+
+</body>
+</html>
